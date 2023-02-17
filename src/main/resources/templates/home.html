@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Andrey's</title>
+        <link rel="stylesheet" href="/css/reset-css.css"/>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<header>
+    <nav th:replace="~{/fragments/navbar}"></nav>
+</header>
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Items</span></h1>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark" th:text="${totalCount}"></span></h1>
+    <hr class="hr-3"/>
+    <div class="container-fluid">
+        <div class="offers row mx-auto d-flex flex-row justify-content-center">
+            <div  th:each="i : ${items}"
+                  th:object="${i}"
+                    class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
+                <a href="/">
+                    <div class="card-img-top-wrapper">
+                        <img class="card-img-top" th:src="'/img/' + *{gender.name()} +  '-' *{category.getName().name()} + '/.jpg'" alt="image">
+
+                    </div>
+                    <div class="card-body pb-1">
+                        <h5 class="card-title text-center" th:text = "|Item name *{name}|"></h5>
+                    </div>
+                    <ul class="offer-details list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="card-text text-center"><span th:text="|Item price *{price}|"></span></div>
+                        </li>
+                    </ul>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+</main>
+<footer class="footer bg-dark  py-2">
+		<div class="container-fluid text-center">
+			<div class="footer-background h5 text-white">
+				Andrey's & Spring Team 2020.
+			</div>
+		</div>
+</footer>
+</body>
+</html>

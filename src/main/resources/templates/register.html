@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Andrey's</title>
+        <link rel="stylesheet" href="/css/reset-css.css"/>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/css/style.css"/>
+    </head>
+
+<body>
+<header>
+    <nav th:replace="~{/fragments/navbar}"></nav>
+</header>
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
+    <hr class="hr-3"/>
+    <form th:action="@{/auth/register}"
+          th:method="POST"
+          th:object="${userRegisterModel}"
+            class="mx-auto mb-5 text-center w-25 bg-dark p-3 rounded">
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label th:value="*{username}" for="username" class="h4 mb-2 text-white">Username
+                    </label>
+            </div>
+            <input type="text" class="form-control" id="username" name="username"/>
+            <small th:if="${#fields.hasErrors('username')}" class="text-danger">Incorrect username!</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label th:value="*{email}" for="email" class="h4 mb-2">Email</label>
+            </div>
+            <input type="email" class="form-control" id="email" name="email"/>
+            <small th:if="${#fields.hasErrors('email')}" class="text-danger">Incorrect email!</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label th:value="*{budget}" for="budget" class="h4 mb-2">User budget</label>
+            </div>
+            <input type="number"  class="form-control" id="budget" name="budget" />
+			<small th:if="${#fields.hasErrors('budget')}" class="text-danger">Incorrect budget!</small>
+
+        </div>
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label th:value="*{password}" for="password" class="h4 mb-2">Password</label>
+            </div>
+            <input type="password" class="form-control" id="password" name="password" />
+            <small th:if="${#fields.hasErrors('password')}" class="text-danger">Incorrect pasword!</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label  th:value="*{confirmPassword}" for="confirmPassword" class="h4 mb-2">Confirm Password</label>
+            </div>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"/>
+  
+        </div>
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-secondary text-white mb-3" value="Register"\>Register</button>
+        </div>
+    </form>
+</main>
+	<footer class="footer bg-dark  py-2">
+		<div class="container-fluid text-center">
+			<div class="footer-background h5 text-white">
+				Andrey's & Spring Team 2020.
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
